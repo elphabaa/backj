@@ -1,0 +1,25 @@
+import java.util.Scanner;
+import java.util.HashSet;
+import java.util.Arrays;
+import java.util.Comparator;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int num = sc.nextInt();
+        sc.nextLine();
+
+        HashSet<String> sorting = new HashSet<>();
+        for (int i = 0; i < num; i++) {
+            sorting.add(sc.nextLine());
+        }
+
+        String[] sort = sorting.toArray(new String[0]);
+
+        Arrays.sort(sort, Comparator.comparing(String::length).thenComparing(Comparator.naturalOrder()));
+
+        for (int i = 0; i < sort.length; i++) {
+            System.out.println(sort[i]);
+        }
+    }
+}
