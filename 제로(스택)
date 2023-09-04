@@ -1,0 +1,48 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+import java.util.StringTokenizer;
+
+public class Main {
+    public static int[] stack;
+    public static int group=0;
+
+    public static void main(String[] args)throws IOException {
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+        StringTokenizer st;
+        int N=Integer.parseInt(br.readLine());
+        stack = new int[N];
+        while (N-- > 0) {
+            st = new StringTokenizer(br.readLine(), " ");
+            String token=st.nextToken();
+
+            switch (token) {
+                case "0":
+                    sb.append(delete()).append('\n');
+                    break;
+                default :
+                    sb.append(plus(Integer.parseInt(token))).append('\n');
+                    break;
+            }
+
+        }
+        int sum=0;
+        for(Integer num:stack){
+            sum+=num;
+        }
+        System.out.println(sum);
+    }
+    public static int plus(int item){
+        stack[group]=item;
+        group++;
+        return item;
+    }
+    public static int delete(){
+        stack[group-1]=0;
+        group--;
+        return 0;
+    }
+}
+
